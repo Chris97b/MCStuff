@@ -1,0 +1,16 @@
+[
+{
+  "modid": "MCStuff",
+  "name": "MC Stuff",
+  "description": "Just learning this shit.",
+  "version": "1.7.10-1.0",
+  "mcversion": "1.7.10",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Chris97b"],
+  "credits": "None",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
