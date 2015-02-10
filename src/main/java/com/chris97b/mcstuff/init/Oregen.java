@@ -1,6 +1,5 @@
 package com.chris97b.mcstuff.init;
 
-import com.chris97b.mcstuff.block.BlockMCStuff;
 import cpw.mods.fml.common.IWorldGenerator;
 import net.minecraft.block.Block;
 import net.minecraft.world.World;

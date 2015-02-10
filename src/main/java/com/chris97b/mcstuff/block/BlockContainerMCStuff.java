@@ -22,6 +22,10 @@ public class BlockContainerMCStuff extends BlockContainer
         this.setCreativeTab(MCStuff.MCSCreativeTab);
     }
 
+    public BlockContainerMCStuff()
+    {
+        this(Material.rock);
+    }
 
     @Override
     public TileEntity createNewTileEntity(World world, int metadata)

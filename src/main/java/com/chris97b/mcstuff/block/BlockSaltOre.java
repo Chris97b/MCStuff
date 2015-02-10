@@ -1,6 +1,5 @@
 package com.chris97b.mcstuff.block;
 
-import com.chris97b.mcstuff.MCStuff;
 import com.chris97b.mcstuff.init.ModItems;
 import net.minecraft.item.Item;
 

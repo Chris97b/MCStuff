@@ -1,6 +1,7 @@
 package com.chris97b.mcstuff;
 
 import com.chris97b.mcstuff.creativetab.CreativeTabMCS;
+import com.chris97b.mcstuff.gui.GuiHandler;
 import com.chris97b.mcstuff.init.ModBlocks;
 import com.chris97b.mcstuff.init.ModItems;
 import com.chris97b.mcstuff.init.Oregen;
@@ -45,6 +46,7 @@ public class MCStuff
     public void init(FMLInitializationEvent event)
     {
         Recipes.init();
+        new GuiHandler();
         //Oregen.generate();
     }
 

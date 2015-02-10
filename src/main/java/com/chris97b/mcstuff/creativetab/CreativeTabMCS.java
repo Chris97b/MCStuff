@@ -1,7 +1,6 @@
 package com.chris97b.mcstuff.creativetab;
 
 import com.chris97b.mcstuff.init.ModItems;
-import com.chris97b.mcstuff.reference.Reference;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 
@@ -22,11 +21,6 @@ public class CreativeTabMCS extends CreativeTabs
         return ModItems.saltCartridge;
     }
 
-    /*@Override
-    public String getTranslatedTabLabel()
-    {
-        return "MC Stuff";
-    }*/
 
 
 }
