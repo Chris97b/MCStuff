@@ -6,7 +6,9 @@ import cpw.mods.fml.common.network.internal.FMLNetworkHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -110,6 +112,44 @@ public class BlockContainerCloudSeeder extends BlockContainerMCStuff
             }
         }
         super.breakBlock(world, x, y, z, block, metadata);
+    }
+
+
+    @Override
+    public void onEntityWalking(World world, int x, int y, int z, Entity entity)
+    {
+        if(!world.isRemote)
+        {
+            addRain(world);
+        }
+    }
+
+    public void removeRain(World world)
+    {
+
+        if(world.getWorldInfo().isRaining())
+        {
+            world.getWorldInfo().setRainTime(0);
+            world.getWorldInfo().setRaining(false);
+        }
+    }
+
+    public void addRain(World world)
+    {
+        if(!world.getWorldInfo().isRaining())
+        {
+            world.getWorldInfo().setRainTime(600);
+            world.getWorldInfo().setRaining(true);
+        }
+    }
+
+    @Override
+    public void onNeighborBlockChange(World world, int x, int y, int z, Block block)
+    {
+        if(!world.isRemote && world.isBlockIndirectlyGettingPowered(x, y, z))
+        {
+            removeRain(world);
+        }
     }
 
 }

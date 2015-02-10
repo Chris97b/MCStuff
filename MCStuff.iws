@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list id="266face2-5b03-4909-b0d5-65420e962025" name="Default" comment="" />
-    <list default="true" id="1ba7e852-dbf9-4eb4-838d-fd96473103be" name="New changelist" comment="Added Cloud Seeder textures, inventory and GUI">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/chris97b/mcstuff/gui/CloudSeederSlot.java" />
+    <list default="true" id="1ba7e852-dbf9-4eb4-838d-fd96473103be" name="New changelist" comment="Added inventory management and item drops to Cloud Seeder">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/eclipse/saves/New World2/level.dat" afterPath="$PROJECT_DIR$/eclipse/saves/New World2/level.dat" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/eclipse/saves/New World2/level.dat_old" afterPath="$PROJECT_DIR$/eclipse/saves/New World2/level.dat_old" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/eclipse/saves/New World2/region/r.0.-1.mca" afterPath="$PROJECT_DIR$/eclipse/saves/New World2/region/r.0.-1.mca" />
@@ -15,9 +14,7 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/eclipse/saves/New World2/DIM1/data/villages.dat" afterPath="$PROJECT_DIR$/eclipse/saves/New World2/DIM1/data/villages.dat" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/eclipse/saves/New World2/data/villages.dat" afterPath="$PROJECT_DIR$/eclipse/saves/New World2/data/villages.dat" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/chris97b/mcstuff/block/BlockContainerCloudSeeder.java" afterPath="$PROJECT_DIR$/src/main/java/com/chris97b/mcstuff/block/BlockContainerCloudSeeder.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/chris97b/mcstuff/gui/ContainerCloudSeeder.java" afterPath="$PROJECT_DIR$/src/main/java/com/chris97b/mcstuff/gui/ContainerCloudSeeder.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MCStuff.iws" afterPath="$PROJECT_DIR$/MCStuff.iws" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/chris97b/mcstuff/tileentities/TileEntityCloudSeeder.java" afterPath="$PROJECT_DIR$/src/main/java/com/chris97b/mcstuff/tileentities/TileEntityCloudSeeder.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/eclipse/logs/fml-client-1.log" afterPath="$PROJECT_DIR$/eclipse/logs/fml-client-1.log" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/eclipse/logs/fml-client-2.log" afterPath="$PROJECT_DIR$/eclipse/logs/fml-client-2.log" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/eclipse/logs/fml-client-3.log" afterPath="$PROJECT_DIR$/eclipse/logs/fml-client-3.log" />
@@ -99,16 +96,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ItemSaltPile.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/chris97b/mcstuff/item/ItemSaltPile.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="374">
-              <caret line="10" column="44" selection-start-line="10" selection-start-column="44" selection-end-line="10" selection-end-column="44" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="BlockContainer.java" pinned="false" current-in-tab="false">
         <entry file="jar://$USER_HOME$/.gradle/caches/minecraft/net/minecraftforge/forge/1.7.10-10.13.2.1291/forgeSrc-1.7.10-10.13.2.1291-sources.jar!/net/minecraft/block/BlockContainer.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -122,8 +109,8 @@
       <file leaf-file-name="BlockContainerCloudSeeder.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/chris97b/mcstuff/block/BlockContainerCloudSeeder.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.89424574" vertical-offset="1261" max-vertical-offset="2006">
-              <caret line="111" column="51" selection-start-line="111" selection-start-column="51" selection-end-line="111" selection-end-column="51" />
+            <state vertical-scroll-proportion="0.81493" vertical-offset="1975" max-vertical-offset="2686">
+              <caret line="150" column="30" selection-start-line="150" selection-start-column="30" selection-end-line="150" selection-end-column="30" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -752,6 +739,7 @@
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder3" value="3" />
     <property name="OverrideImplement.combined" value="true" />
     <property name="OverrideImplement.overriding.sorted" value="false" />
+    <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;jar://C:/Users/Chris/.gradle/caches/minecraft/net/minecraftforge/forge/1.7.10-10.13.2.1291/forgeSrc-1.7.10-10.13.2.1291-sources.jar!/net/minecraft/world/World.java" />
   </component>
   <component name="RestoreUpdateTree">
     <UpdateInfo date="Moments ago" ActionInfo="_Update">
@@ -1111,7 +1099,13 @@
       <option name="project" value="LOCAL" />
       <updated>1423576783469</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Added inventory management and item drops to Cloud Seeder">
+      <created>1423592693054</created>
+      <option name="number" value="00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1423592693054</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -1183,7 +1177,8 @@
     <MESSAGE value="a" />
     <MESSAGE value="Added block container and tile entity classes" />
     <MESSAGE value="Added Cloud Seeder textures, inventory and GUI" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Cloud Seeder textures, inventory and GUI" />
+    <MESSAGE value="Added inventory management and item drops to Cloud Seeder" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added inventory management and item drops to Cloud Seeder" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -1195,16 +1190,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/chris97b/mcstuff/block/BlockSaltOre.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="697">
-          <caret line="31" column="17" selection-start-line="31" selection-start-column="17" selection-end-line="31" selection-end-column="17" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/chris97b/mcstuff/init/Oregen.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="476" max-vertical-offset="867">
@@ -1666,10 +1651,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/minecraft/net/minecraftforge/forge/1.7.10-10.13.2.1291/forgeSrc-1.7.10-10.13.2.1291-sources.jar!/net/minecraft/world/World.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.2678866" vertical-offset="69449" max-vertical-offset="73253">
+          <caret line="4072" column="130" selection-start-line="4072" selection-start-column="126" selection-end-line="4072" selection-end-column="130" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/chris97b/mcstuff/block/BlockContainerCloudSeeder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.89424574" vertical-offset="1261" max-vertical-offset="2006">
-          <caret line="111" column="51" selection-start-line="111" selection-start-column="51" selection-end-line="111" selection-end-column="51" />
+        <state vertical-scroll-proportion="0.81493" vertical-offset="1975" max-vertical-offset="2686">
+          <caret line="150" column="30" selection-start-line="150" selection-start-column="30" selection-end-line="150" selection-end-column="30" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
