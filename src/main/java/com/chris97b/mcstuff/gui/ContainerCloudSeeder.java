@@ -51,4 +51,10 @@ public class ContainerCloudSeeder extends Container
     {
         return null;
     }
+
+    public TileEntityCloudSeeder getTE()
+    {
+        return te;
+    }
+
 }

@@ -61,4 +61,13 @@ public class TileEntityCloudSeeder extends TileEntityInventory
 
     }
 
+    public void toggleAuto()
+    {
+        System.out.println("Toggling auto function");
+        int metadata=worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
+        metadata = metadata == 0 ? 1 : 0;
+        worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, metadata, 3);
+    }
+
+
 }

@@ -1,6 +1,7 @@
 package com.chris97b.mcstuff.block;
 
 import com.chris97b.mcstuff.MCStuff;
+import com.chris97b.mcstuff.init.ModItems;
 import com.chris97b.mcstuff.tileentities.TileEntityCloudSeeder;
 import cpw.mods.fml.common.network.internal.FMLNetworkHandler;
 import cpw.mods.fml.relauncher.Side;
@@ -120,26 +121,38 @@ public class BlockContainerCloudSeeder extends BlockContainerMCStuff
     {
         if(!world.isRemote)
         {
-            addRain(world);
+            TileEntity te=world.getTileEntity(x,y,z);
+            if(te!=null && te instanceof TileEntityCloudSeeder)
+            addRain(world, (IInventory)te);
         }
     }
 
-    public void removeRain(World world)
+    public void removeRain(World world, IInventory inventory)
     {
 
         if(world.getWorldInfo().isRaining())
         {
-            world.getWorldInfo().setRainTime(0);
-            world.getWorldInfo().setRaining(false);
+            ItemStack stack = inventory.getStackInSlot(0);
+            if(stack!=null && stack.isItemEqual(new ItemStack(ModItems.saltCartridge)))
+            {
+                inventory.decrStackSize(0, 1);
+                world.getWorldInfo().setRainTime(0);
+                world.getWorldInfo().setRaining(false);
+            }
         }
     }
 
-    public void addRain(World world)
+    public void addRain(World world, IInventory inventory)
     {
         if(!world.getWorldInfo().isRaining())
         {
-            world.getWorldInfo().setRainTime(600);
-            world.getWorldInfo().setRaining(true);
+            ItemStack stack = inventory.getStackInSlot(0);
+            if(stack!=null && stack.isItemEqual(new ItemStack(ModItems.saltCartridge)))
+            {
+                inventory.decrStackSize(0, 1);
+                world.getWorldInfo().setRainTime(600);
+                world.getWorldInfo().setRaining(true);
+            }
         }
     }
 
@@ -148,7 +161,9 @@ public class BlockContainerCloudSeeder extends BlockContainerMCStuff
     {
         if(!world.isRemote && world.isBlockIndirectlyGettingPowered(x, y, z))
         {
-            removeRain(world);
+            TileEntity te=world.getTileEntity(x,y,z);
+            if(te!=null && te instanceof TileEntityCloudSeeder)
+            removeRain(world, (IInventory)te);
         }
     }
 
