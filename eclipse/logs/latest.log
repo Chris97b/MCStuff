@@ -1,27 +1,27 @@
-[11:20:39] [main/INFO]: Setting user: Player894
-[11:20:40] [Client thread/INFO]: LWJGL Version: 2.9.1
-[11:20:44] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:MC Stuff
-[11:20:45] [Sound Library Loader/INFO]: Sound engine started
-[11:20:47] [Client thread/INFO]: Created: 512x256 textures/blocks-atlas
-[11:20:47] [Client thread/INFO]: Created: 256x256 textures/items-atlas
-[11:20:47] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:MC Stuff
-[11:20:47] [Client thread/INFO]: Created: 256x256 textures/items-atlas
-[11:20:47] [Client thread/INFO]: Created: 512x256 textures/blocks-atlas
-[11:20:48] [Sound Library Loader/INFO]: Sound engine started
-[11:20:51] [Server thread/INFO]: Starting integrated minecraft server version 1.7.10
-[11:20:51] [Server thread/INFO]: Generating keypair
-[11:20:52] [Server thread/INFO]: Preparing start region for level 0
-[11:20:53] [Server thread/INFO]: Changing view distance to 12, from 10
-[11:20:53] [Server thread/INFO]: Player894[local:E:8d7f20c1] logged in with entity id 204 at (392.31788074938373, 64.0, 170.4687035422798)
-[11:20:53] [Server thread/INFO]: Player894 joined the game
-[11:21:07] [Server thread/INFO]: Saving and pausing game...
-[11:21:07] [Server thread/INFO]: Saving chunks for level 'New World2'/Overworld
-[11:21:07] [Server thread/INFO]: Saving chunks for level 'New World2'/Nether
-[11:21:07] [Server thread/INFO]: Saving chunks for level 'New World2'/The End
-[11:21:08] [Client thread/INFO]: Stopping!
-[11:21:08] [Server thread/INFO]: Stopping server
-[11:21:08] [Server thread/INFO]: Saving players
-[11:21:08] [Server thread/INFO]: Saving worlds
-[11:21:08] [Server thread/INFO]: Saving chunks for level 'New World2'/Overworld
-[11:21:08] [Server thread/INFO]: Saving chunks for level 'New World2'/Nether
-[11:21:08] [Server thread/INFO]: Saving chunks for level 'New World2'/The End
+[13:06:12] [main/INFO]: Setting user: Player659
+[13:06:13] [Client thread/INFO]: LWJGL Version: 2.9.1
+[13:06:17] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:MC Stuff
+[13:06:18] [Sound Library Loader/INFO]: Sound engine started
+[13:06:19] [Client thread/INFO]: Created: 512x256 textures/blocks-atlas
+[13:06:19] [Client thread/INFO]: Created: 256x256 textures/items-atlas
+[13:06:19] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:MC Stuff
+[13:06:19] [Client thread/INFO]: Created: 256x256 textures/items-atlas
+[13:06:20] [Client thread/INFO]: Created: 512x256 textures/blocks-atlas
+[13:06:20] [Sound Library Loader/INFO]: Sound engine started
+[13:06:23] [Server thread/INFO]: Starting integrated minecraft server version 1.7.10
+[13:06:23] [Server thread/INFO]: Generating keypair
+[13:06:24] [Server thread/INFO]: Preparing start region for level 0
+[13:06:25] [Server thread/INFO]: Changing view distance to 12, from 10
+[13:06:25] [Server thread/INFO]: Player659[local:E:844ac965] logged in with entity id 203 at (392.45468708880605, 64.0, 170.33849240239516)
+[13:06:25] [Server thread/INFO]: Player659 joined the game
+[13:06:32] [Server thread/INFO]: Player659 has just earned the achievement [Taking Inventory]
+[13:06:32] [Client thread/INFO]: [CHAT] Player659 has just earned the achievement [Taking Inventory]
+[13:06:33] [Client thread/INFO]: Stopping!
+[13:06:33] [Server thread/INFO]: Stopping server
+[13:06:33] [Server thread/INFO]: Saving players
+[13:06:33] [Server thread/INFO]: Saving worlds
+[13:06:33] [Server thread/INFO]: Saving chunks for level 'New World2'/Overworld
+[13:06:33] [Server thread/INFO]: Saving chunks for level 'New World2'/Nether
+[13:06:33] [Server thread/INFO]: Saving chunks for level 'New World2'/The End
+[13:06:33] [Client Shutdown Thread/INFO]: Stopping server
+[13:06:33] [Client Shutdown Thread/INFO]: Saving players

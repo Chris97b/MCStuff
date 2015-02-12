@@ -2,9 +2,11 @@ package com.chris97b.mcstuff.tileentities;
 
 
 import com.chris97b.mcstuff.init.ModItems;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.world.World;
 
 /**
  * Created by Chris on 2/10/2015.
@@ -67,6 +69,36 @@ public class TileEntityCloudSeeder extends TileEntityInventory
         int metadata=worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
         metadata = metadata == 0 ? 1 : 0;
         worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, metadata, 3);
+    }
+
+
+    public void removeRain(World world, IInventory inventory)
+    {
+
+        if(world.getWorldInfo().isRaining())
+        {
+            ItemStack stack = inventory.getStackInSlot(0);
+            if(stack!=null && stack.isItemEqual(new ItemStack(ModItems.saltCartridge)))
+            {
+                inventory.decrStackSize(0, 1);
+                world.getWorldInfo().setRainTime(0);
+                world.getWorldInfo().setRaining(false);
+            }
+        }
+    }
+
+    public void addRain(World world, IInventory inventory)
+    {
+        if(!world.getWorldInfo().isRaining())
+        {
+            ItemStack stack = inventory.getStackInSlot(0);
+            if(stack!=null && stack.isItemEqual(new ItemStack(ModItems.saltCartridge)))
+            {
+                inventory.decrStackSize(0, 1);
+                world.getWorldInfo().setRainTime(600);
+                world.getWorldInfo().setRaining(true);
+            }
+        }
     }
 
 

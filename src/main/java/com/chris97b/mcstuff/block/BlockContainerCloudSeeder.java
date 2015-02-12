@@ -45,10 +45,6 @@ public class BlockContainerCloudSeeder extends BlockContainerMCStuff
             {
                 this.icons[i] = reg.registerIcon(this.getUnlocalizedName().substring(this.getUnlocalizedName().indexOf(".") + 1) + "Top");
             }
-            else if(i==2)
-            {
-                this.icons[i] = reg.registerIcon(this.getUnlocalizedName().substring(this.getUnlocalizedName().indexOf(".") + 1) + "Front");
-            }
             else
             {
                 this.icons[i] = reg.registerIcon(this.getUnlocalizedName().substring(this.getUnlocalizedName().indexOf(".") + 1) + "Side");
@@ -56,7 +52,7 @@ public class BlockContainerCloudSeeder extends BlockContainerMCStuff
 
 
         }
-        System.out.println(Arrays.toString(this.icons));
+        //System.out.println(Arrays.toString(this.icons));
     }
 
     @Override
@@ -123,10 +119,14 @@ public class BlockContainerCloudSeeder extends BlockContainerMCStuff
         {
             TileEntity te=world.getTileEntity(x,y,z);
             if(te!=null && te instanceof TileEntityCloudSeeder)
-            addRain(world, (IInventory)te);
+            {
+                ((TileEntityCloudSeeder)te).addRain(world, (IInventory) te);
+            }
+
         }
     }
 
+    /*
     public void removeRain(World world, IInventory inventory)
     {
 
@@ -154,7 +154,7 @@ public class BlockContainerCloudSeeder extends BlockContainerMCStuff
                 world.getWorldInfo().setRaining(true);
             }
         }
-    }
+    }*/
 
     @Override
     public void onNeighborBlockChange(World world, int x, int y, int z, Block block)
@@ -163,7 +163,9 @@ public class BlockContainerCloudSeeder extends BlockContainerMCStuff
         {
             TileEntity te=world.getTileEntity(x,y,z);
             if(te!=null && te instanceof TileEntityCloudSeeder)
-            removeRain(world, (IInventory)te);
+            {
+                ((TileEntityCloudSeeder)te).removeRain(world, (IInventory)te);
+            }
         }
     }
 
