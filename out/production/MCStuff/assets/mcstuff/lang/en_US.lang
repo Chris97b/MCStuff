@@ -1,6 +1,0 @@
-item.mcstuff:saltCartridge.name=Salt Cartridge
-item.mcstuff:emptyCartridge.name=Empty Cartridge
-item.mcstuff:saltPile.name=Salt Pile
-tile.mcstuff:saltOre.name=Salt Ore
-tile.mcstuff:cloudSeeder.name=Cloud Seeder
-itemGroup.mcstuff=MC Stuff
