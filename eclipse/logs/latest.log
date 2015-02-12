@@ -1,27 +1,39 @@
-[13:06:12] [main/INFO]: Setting user: Player659
-[13:06:13] [Client thread/INFO]: LWJGL Version: 2.9.1
-[13:06:17] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:MC Stuff
-[13:06:18] [Sound Library Loader/INFO]: Sound engine started
-[13:06:19] [Client thread/INFO]: Created: 512x256 textures/blocks-atlas
-[13:06:19] [Client thread/INFO]: Created: 256x256 textures/items-atlas
-[13:06:19] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:MC Stuff
-[13:06:19] [Client thread/INFO]: Created: 256x256 textures/items-atlas
-[13:06:20] [Client thread/INFO]: Created: 512x256 textures/blocks-atlas
-[13:06:20] [Sound Library Loader/INFO]: Sound engine started
-[13:06:23] [Server thread/INFO]: Starting integrated minecraft server version 1.7.10
-[13:06:23] [Server thread/INFO]: Generating keypair
-[13:06:24] [Server thread/INFO]: Preparing start region for level 0
-[13:06:25] [Server thread/INFO]: Changing view distance to 12, from 10
-[13:06:25] [Server thread/INFO]: Player659[local:E:844ac965] logged in with entity id 203 at (392.45468708880605, 64.0, 170.33849240239516)
-[13:06:25] [Server thread/INFO]: Player659 joined the game
-[13:06:32] [Server thread/INFO]: Player659 has just earned the achievement [Taking Inventory]
-[13:06:32] [Client thread/INFO]: [CHAT] Player659 has just earned the achievement [Taking Inventory]
-[13:06:33] [Client thread/INFO]: Stopping!
-[13:06:33] [Server thread/INFO]: Stopping server
-[13:06:33] [Server thread/INFO]: Saving players
-[13:06:33] [Server thread/INFO]: Saving worlds
-[13:06:33] [Server thread/INFO]: Saving chunks for level 'New World2'/Overworld
-[13:06:33] [Server thread/INFO]: Saving chunks for level 'New World2'/Nether
-[13:06:33] [Server thread/INFO]: Saving chunks for level 'New World2'/The End
-[13:06:33] [Client Shutdown Thread/INFO]: Stopping server
-[13:06:33] [Client Shutdown Thread/INFO]: Saving players
+[14:56:47] [main/INFO]: Setting user: Player825
+[14:56:48] [Client thread/INFO]: LWJGL Version: 2.9.1
+[14:56:52] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:MC Stuff
+[14:56:53] [Sound Library Loader/INFO]: Sound engine started
+[14:56:54] [Client thread/INFO]: Created: 512x256 textures/blocks-atlas
+[14:56:55] [Client thread/INFO]: Created: 256x256 textures/items-atlas
+[14:56:55] [Client thread/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:MC Stuff
+[14:56:55] [Client thread/INFO]: Created: 256x256 textures/items-atlas
+[14:56:55] [Client thread/INFO]: Created: 512x256 textures/blocks-atlas
+[14:56:56] [Sound Library Loader/INFO]: Sound engine started
+[15:04:20] [Server thread/INFO]: Starting integrated minecraft server version 1.7.10
+[15:04:20] [Server thread/INFO]: Generating keypair
+[15:04:20] [Server thread/INFO]: Preparing start region for level 0
+[15:04:21] [Server thread/INFO]: Changing view distance to 12, from 10
+[15:04:22] [Server thread/INFO]: Player825[local:E:5f770fb3] logged in with entity id 202 at (391.11412260553607, 65.0, 169.70431399611138)
+[15:04:22] [Server thread/INFO]: Player825 joined the game
+[15:04:31] [Server thread/INFO]: [Player825: Toggled downfall]
+[15:04:31] [Client thread/INFO]: [CHAT] Toggled downfall
+[15:04:33] [Server thread/INFO]: Saving and pausing game...
+[15:04:33] [Server thread/INFO]: Saving chunks for level 'New World2'/Overworld
+[15:04:33] [Server thread/INFO]: Saving chunks for level 'New World2'/Nether
+[15:04:33] [Server thread/INFO]: Saving chunks for level 'New World2'/The End
+[15:04:52] [Server thread/INFO]: [Player825: Toggled downfall]
+[15:04:52] [Client thread/INFO]: [CHAT] Toggled downfall
+[15:05:07] [Server thread/INFO]: [Player825: Toggled downfall]
+[15:05:07] [Client thread/INFO]: [CHAT] Toggled downfall
+[15:05:18] [Server thread/INFO]: [Player825: Toggled downfall]
+[15:05:18] [Client thread/INFO]: [CHAT] Toggled downfall
+[15:05:29] [Server thread/INFO]: Saving and pausing game...
+[15:05:29] [Server thread/INFO]: Saving chunks for level 'New World2'/Overworld
+[15:05:29] [Server thread/INFO]: Saving chunks for level 'New World2'/Nether
+[15:05:29] [Server thread/INFO]: Saving chunks for level 'New World2'/The End
+[15:05:31] [Server thread/INFO]: Stopping server
+[15:05:31] [Server thread/INFO]: Saving players
+[15:05:31] [Server thread/INFO]: Saving worlds
+[15:05:31] [Server thread/INFO]: Saving chunks for level 'New World2'/Overworld
+[15:05:31] [Server thread/INFO]: Saving chunks for level 'New World2'/Nether
+[15:05:31] [Server thread/INFO]: Saving chunks for level 'New World2'/The End
+[15:05:32] [Client thread/INFO]: Stopping!

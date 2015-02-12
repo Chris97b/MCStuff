@@ -8,11 +8,30 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.World;
 
+import java.util.Random;
+
 /**
  * Created by Chris on 2/10/2015.
  */
 public class TileEntityCloudSeeder extends TileEntityInventory
 {
+
+    int ticks=0;
+    int ticksSinceLastOperation=0;
+
+    @Override
+    public void updateEntity()
+    {
+        ticks++;
+        ticksSinceLastOperation++;
+        if(ticks==100)
+        {
+            ticks=0;
+            this.addRain(worldObj, (IInventory) this);
+            this.removeRain(worldObj, (IInventory) this);
+        }
+    }
+
 
     @Override
     public boolean isItemValidForSlot(int slot, ItemStack itemstack) {
@@ -75,7 +94,7 @@ public class TileEntityCloudSeeder extends TileEntityInventory
     public void removeRain(World world, IInventory inventory)
     {
 
-        if(world.getWorldInfo().isRaining())
+        if(world.getWorldInfo().isRaining() && ticksSinceLastOperation>=100)
         {
             ItemStack stack = inventory.getStackInSlot(0);
             if(stack!=null && stack.isItemEqual(new ItemStack(ModItems.saltCartridge)))
@@ -83,12 +102,14 @@ public class TileEntityCloudSeeder extends TileEntityInventory
                 inventory.decrStackSize(0, 1);
                 world.getWorldInfo().setRainTime(0);
                 world.getWorldInfo().setRaining(false);
+                ticksSinceLastOperation=0;
             }
         }
     }
 
     public void addRain(World world, IInventory inventory)
     {
+        /*  Temporarily disabled until different cartridge types are added to prevent looping with auto add/remove
         if(!world.getWorldInfo().isRaining())
         {
             ItemStack stack = inventory.getStackInSlot(0);
@@ -97,8 +118,10 @@ public class TileEntityCloudSeeder extends TileEntityInventory
                 inventory.decrStackSize(0, 1);
                 world.getWorldInfo().setRainTime(600);
                 world.getWorldInfo().setRaining(true);
+                ticksSinceLastOperation=0;
             }
         }
+        */
     }
 
 
