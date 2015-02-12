@@ -3,6 +3,7 @@ package com.chris97b.mcstuff.block;
 import com.chris97b.mcstuff.MCStuff;
 import com.chris97b.mcstuff.init.ModItems;
 import com.chris97b.mcstuff.tileentities.TileEntityCloudSeeder;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.network.internal.FMLNetworkHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -17,8 +18,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.world.WorldEvent;
 
 import java.util.Arrays;
+import java.util.Random;
 
 /**
  * Created by Chris on 2/10/2015.
@@ -34,6 +38,8 @@ public class BlockContainerCloudSeeder extends BlockContainerMCStuff
     }
 
     public IIcon[] icons = new IIcon[6];
+    private int worldUpdate = 0;
+
 
     @Override
     @SideOnly(Side.CLIENT)
@@ -45,10 +51,10 @@ public class BlockContainerCloudSeeder extends BlockContainerMCStuff
             {
                 this.icons[i] = reg.registerIcon(this.getUnlocalizedName().substring(this.getUnlocalizedName().indexOf(".") + 1) + "Top");
             }
-            else if(i==2)
-            {
-                this.icons[i] = reg.registerIcon(this.getUnlocalizedName().substring(this.getUnlocalizedName().indexOf(".") + 1) + "Front");
-            }
+//            else if(i==2)
+//            {
+//                this.icons[i] = reg.registerIcon(this.getUnlocalizedName().substring(this.getUnlocalizedName().indexOf(".") + 1) + "Front");
+//            }
             else
             {
                 this.icons[i] = reg.registerIcon(this.getUnlocalizedName().substring(this.getUnlocalizedName().indexOf(".") + 1) + "Side");
@@ -121,49 +127,23 @@ public class BlockContainerCloudSeeder extends BlockContainerMCStuff
     {
         if(!world.isRemote)
         {
-            TileEntity te=world.getTileEntity(x,y,z);
+            TileEntityCloudSeeder te= (TileEntityCloudSeeder)world.getTileEntity(x,y,z);
             if(te!=null && te instanceof TileEntityCloudSeeder)
-            addRain(world, (IInventory)te);
+                te.addRain();
         }
     }
 
-    public void removeRain(World world, IInventory inventory)
-    {
 
-        if(world.getWorldInfo().isRaining())
-        {
-            ItemStack stack = inventory.getStackInSlot(0);
-            if(stack!=null && stack.isItemEqual(new ItemStack(ModItems.saltCartridge)))
-            {
-                inventory.decrStackSize(0, 1);
-                world.getWorldInfo().setRainTime(0);
-                world.getWorldInfo().setRaining(false);
-            }
-        }
-    }
 
-    public void addRain(World world, IInventory inventory)
-    {
-        if(!world.getWorldInfo().isRaining())
-        {
-            ItemStack stack = inventory.getStackInSlot(0);
-            if(stack!=null && stack.isItemEqual(new ItemStack(ModItems.saltCartridge)))
-            {
-                inventory.decrStackSize(0, 1);
-                world.getWorldInfo().setRainTime(600);
-                world.getWorldInfo().setRaining(true);
-            }
-        }
-    }
 
     @Override
     public void onNeighborBlockChange(World world, int x, int y, int z, Block block)
     {
         if(!world.isRemote && world.isBlockIndirectlyGettingPowered(x, y, z))
         {
-            TileEntity te=world.getTileEntity(x,y,z);
+            TileEntityCloudSeeder te= (TileEntityCloudSeeder)world.getTileEntity(x,y,z);
             if(te!=null && te instanceof TileEntityCloudSeeder)
-            removeRain(world, (IInventory)te);
+                te.removeRain();
         }
     }
 
