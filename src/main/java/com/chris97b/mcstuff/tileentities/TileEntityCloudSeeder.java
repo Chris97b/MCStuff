@@ -2,7 +2,9 @@ package com.chris97b.mcstuff.tileentities;
 
 
 import com.chris97b.mcstuff.init.ModItems;
+import com.chris97b.mcstuff.item.ItemEmptyCartridge;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -18,6 +20,7 @@ public class TileEntityCloudSeeder extends TileEntityInventory
 
 
     int ticks=0;
+<<<<<<< HEAD
     int ticksSinceLastOperation=0;
     boolean autoMode = true;
 
@@ -30,25 +33,30 @@ public class TileEntityCloudSeeder extends TileEntityInventory
         }
     }
 
+=======
+>>>>>>> Added more things.
 
     @Override
     public void updateEntity()
     {
         ticks++;
+<<<<<<< HEAD
         ticksSinceLastOperation++;
         if(ticks==100 && autoMode)
+=======
+        if(ticks==100)
+>>>>>>> Added more things.
         {
             ticks=0;
-            this.addRain(worldObj, (IInventory) this);
-            this.removeRain(worldObj, (IInventory) this);
+            useCartridge();
         }
     }
 
 
     @Override
     public boolean isItemValidForSlot(int slot, ItemStack itemstack) {
-        ItemStack saltCartridgeStack = new ItemStack(ModItems.saltCartridge);
-        return itemstack.isItemEqual(saltCartridgeStack);
+        Item c = itemstack.getItem();
+        return (c instanceof ItemEmptyCartridge);
     }
 
     @Override
@@ -73,6 +81,15 @@ public class TileEntityCloudSeeder extends TileEntityInventory
 
         compound.setTag("Itemlist", itemlist);
 
+    }
+
+    public void useCartridge(){
+        ItemStack stack = this.getStackInSlot(0);
+        if(stack != null && isItemValidForSlot(0,stack)){
+            this.decrStackSize(0,1);
+            ItemEmptyCartridge cart = (ItemEmptyCartridge)stack.getItem();
+            cart.runCartridgeLogic(this.worldObj);
+        }
     }
 
     @Override
@@ -112,39 +129,6 @@ public class TileEntityCloudSeeder extends TileEntityInventory
 
     }
 
-
-    public void removeRain(World world, IInventory inventory)
-    {
-
-        if(world.getWorldInfo().isRaining() && ticksSinceLastOperation>=100)
-        {
-            ItemStack stack = inventory.getStackInSlot(0);
-            if(stack!=null && stack.isItemEqual(new ItemStack(ModItems.saltCartridge)))
-            {
-                inventory.decrStackSize(0, 1);
-                world.getWorldInfo().setRainTime(0);
-                world.getWorldInfo().setRaining(false);
-                ticksSinceLastOperation=0;
-            }
-        }
-    }
-
-    public void addRain(World world, IInventory inventory)
-    {
-        /*  Temporarily disabled until different cartridge types are added to prevent looping with auto add/remove
-        if(!world.getWorldInfo().isRaining())
-        {
-            ItemStack stack = inventory.getStackInSlot(0);
-            if(stack!=null && stack.isItemEqual(new ItemStack(ModItems.saltCartridge)))
-            {
-                inventory.decrStackSize(0, 1);
-                world.getWorldInfo().setRainTime(600);
-                world.getWorldInfo().setRaining(true);
-                ticksSinceLastOperation=0;
-            }
-        }
-        */
-    }
 
 
 }
