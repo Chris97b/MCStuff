@@ -8,6 +8,7 @@ import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.inventory.Container;
+import net.minecraft.world.World;
 
 /**
  * Created by Chris on 2/11/2015.
@@ -51,6 +52,11 @@ public class CloudSeederPacket implements IMessage
             {
                 //Flip modes
                 ((ContainerCloudSeeder) container).getTE().toggleAuto();
+                World w = ((ContainerCloudSeeder) container).getTE().getWorldObj();
+                int xcoord = ((ContainerCloudSeeder) container).getTE().xCoord;
+                int ycoord = ((ContainerCloudSeeder) container).getTE().yCoord;
+                int zcoord = ((ContainerCloudSeeder) container).getTE().zCoord;
+                w.markBlockForUpdate(xcoord,ycoord,zcoord);
             }
             return null;
 

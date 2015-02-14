@@ -2,10 +2,16 @@ package com.chris97b.mcstuff.tileentities;
 
 
 import com.chris97b.mcstuff.init.ModItems;
+import com.chris97b.mcstuff.item.ItemEmptyCartridge;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagByte;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.Packet;
+import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.world.World;
 
 import java.util.Random;
@@ -18,37 +24,25 @@ public class TileEntityCloudSeeder extends TileEntityInventory
 
 
     int ticks=0;
-    int ticksSinceLastOperation=0;
     boolean autoMode = true;
-
-    public TileEntityCloudSeeder()
-    {
-        super();
-        if(worldObj.getBlockMetadata(xCoord, yCoord, zCoord)==1)
-        {
-            autoMode=false;
-        }
-    }
 
 
     @Override
     public void updateEntity()
     {
         ticks++;
-        ticksSinceLastOperation++;
-        if(ticks==100 && autoMode)
+        if(ticks==100 & autoMode == true)
         {
             ticks=0;
-            this.addRain(worldObj, (IInventory) this);
-            this.removeRain(worldObj, (IInventory) this);
+            useCartridge();
         }
     }
 
 
     @Override
     public boolean isItemValidForSlot(int slot, ItemStack itemstack) {
-        ItemStack saltCartridgeStack = new ItemStack(ModItems.saltCartridge);
-        return itemstack.isItemEqual(saltCartridgeStack);
+        Item c = itemstack.getItem();
+        return (c instanceof ItemEmptyCartridge);
     }
 
     @Override
@@ -72,7 +66,17 @@ public class TileEntityCloudSeeder extends TileEntityInventory
         }
 
         compound.setTag("Itemlist", itemlist);
+        compound.setBoolean("autoMode",this.autoMode);
+    }
 
+    public void useCartridge(){
+        ItemStack stack = this.getStackInSlot(0);
+        if(stack != null && isItemValidForSlot(0,stack)){
+            ItemEmptyCartridge cart = (ItemEmptyCartridge)stack.getItem();
+            if(cart.runCartridgeLogic(this.worldObj)){
+                this.decrStackSize(0,1);
+            }
+        }
     }
 
     @Override
@@ -81,6 +85,7 @@ public class TileEntityCloudSeeder extends TileEntityInventory
         super.readFromNBT(compound);
 
         NBTTagList items = compound.getTagList("Itemlist", compound.getId());
+        this.autoMode = compound.getBoolean("autoMode");
 
         for (int i=0; i<items.tagCount(); i++)
         {
@@ -94,57 +99,28 @@ public class TileEntityCloudSeeder extends TileEntityInventory
 
     }
 
+    @Override
+    public Packet getDescriptionPacket() {
+        NBTTagCompound tag = new NBTTagCompound();
+        this.writeToNBT(tag);
+        return new S35PacketUpdateTileEntity(xCoord,yCoord,zCoord,3,tag);
+    }
+
+    @Override
+    public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
+       readFromNBT(pkt.func_148857_g());
+    }
+
     public void toggleAuto()
     {
-        System.out.println("Toggling auto function");
-        int metadata=worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
-        if(metadata==0)
-        {
-            autoMode=true;
-            worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, 1, 3);
-        }
-        else
-        {
-            autoMode=false;
-            worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, 0, 3);
-        }
-
-
+        System.out.println("Toggling auto function on Tile Entity at" + xCoord + "," + zCoord);
+        this.autoMode = !this.autoMode;
+        System.out.println("Auto is now " + this.autoMode);
     }
 
-
-    public void removeRain(World world, IInventory inventory)
-    {
-
-        if(world.getWorldInfo().isRaining() && ticksSinceLastOperation>=100)
-        {
-            ItemStack stack = inventory.getStackInSlot(0);
-            if(stack!=null && stack.isItemEqual(new ItemStack(ModItems.saltCartridge)))
-            {
-                inventory.decrStackSize(0, 1);
-                world.getWorldInfo().setRainTime(0);
-                world.getWorldInfo().setRaining(false);
-                ticksSinceLastOperation=0;
-            }
-        }
+    public boolean isAutoMode() {
+        System.out.println("Getting auto on Tile Entity at" + xCoord + "," + zCoord);
+        System.out.println("Auto is" + this.autoMode);
+        return autoMode;
     }
-
-    public void addRain(World world, IInventory inventory)
-    {
-        /*  Temporarily disabled until different cartridge types are added to prevent looping with auto add/remove
-        if(!world.getWorldInfo().isRaining())
-        {
-            ItemStack stack = inventory.getStackInSlot(0);
-            if(stack!=null && stack.isItemEqual(new ItemStack(ModItems.saltCartridge)))
-            {
-                inventory.decrStackSize(0, 1);
-                world.getWorldInfo().setRainTime(600);
-                world.getWorldInfo().setRaining(true);
-                ticksSinceLastOperation=0;
-            }
-        }
-        */
-    }
-
-
 }
