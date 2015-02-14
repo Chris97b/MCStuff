@@ -6,8 +6,12 @@ import com.chris97b.mcstuff.item.ItemEmptyCartridge;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagByte;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.Packet;
+import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.world.World;
 
 import java.util.Random;
@@ -22,14 +26,6 @@ public class TileEntityCloudSeeder extends TileEntityInventory
     int ticks=0;
     boolean autoMode = true;
 
-    public TileEntityCloudSeeder()
-    {
-        super();
-        if(worldObj.getBlockMetadata(xCoord, yCoord, zCoord)==1)
-        {
-            autoMode=false;
-        }
-    }
 
     @Override
     public void updateEntity()
@@ -70,15 +66,16 @@ public class TileEntityCloudSeeder extends TileEntityInventory
         }
 
         compound.setTag("Itemlist", itemlist);
-
+        compound.setBoolean("autoMode",this.autoMode);
     }
 
     public void useCartridge(){
         ItemStack stack = this.getStackInSlot(0);
         if(stack != null && isItemValidForSlot(0,stack)){
-            this.decrStackSize(0,1);
             ItemEmptyCartridge cart = (ItemEmptyCartridge)stack.getItem();
-            cart.runCartridgeLogic(this.worldObj);
+            if(cart.runCartridgeLogic(this.worldObj)){
+                this.decrStackSize(0,1);
+            }
         }
     }
 
@@ -88,6 +85,7 @@ public class TileEntityCloudSeeder extends TileEntityInventory
         super.readFromNBT(compound);
 
         NBTTagList items = compound.getTagList("Itemlist", compound.getId());
+        this.autoMode = compound.getBoolean("autoMode");
 
         for (int i=0; i<items.tagCount(); i++)
         {
@@ -101,24 +99,28 @@ public class TileEntityCloudSeeder extends TileEntityInventory
 
     }
 
-    public void toggleAuto()
-    {
-        System.out.println("Toggling auto function");
-        int metadata=worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
-        if(metadata==0)
-        {
-            autoMode=true;
-            worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, 1, 3);
-        }
-        else
-        {
-            autoMode=false;
-            worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, 0, 3);
-        }
-
-
+    @Override
+    public Packet getDescriptionPacket() {
+        NBTTagCompound tag = new NBTTagCompound();
+        this.writeToNBT(tag);
+        return new S35PacketUpdateTileEntity(xCoord,yCoord,zCoord,3,tag);
     }
 
+    @Override
+    public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
+       readFromNBT(pkt.func_148857_g());
+    }
 
+    public void toggleAuto()
+    {
+        System.out.println("Toggling auto function on Tile Entity at" + xCoord + "," + zCoord);
+        this.autoMode = !this.autoMode;
+        System.out.println("Auto is now " + this.autoMode);
+    }
 
+    public boolean isAutoMode() {
+        System.out.println("Getting auto on Tile Entity at" + xCoord + "," + zCoord);
+        System.out.println("Auto is" + this.autoMode);
+        return autoMode;
+    }
 }

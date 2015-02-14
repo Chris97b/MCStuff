@@ -52,7 +52,7 @@ public class GuiCloudSeeder extends GuiContainer
     {
         super.initGui();
         buttonList.clear();
-        if(te.getBlockMetadata()==0)
+        if(!te.isAutoMode())
         {
             buttonList.add(new GuiButton(0, guiLeft + 100, guiTop + 14, 60, 20, MANUAL_TEXT));
         }
