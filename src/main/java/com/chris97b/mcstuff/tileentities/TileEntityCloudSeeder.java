@@ -16,15 +16,27 @@ import java.util.Random;
 public class TileEntityCloudSeeder extends TileEntityInventory
 {
 
+
     int ticks=0;
     int ticksSinceLastOperation=0;
+    boolean autoMode = true;
+
+    public TileEntityCloudSeeder()
+    {
+        super();
+        if(worldObj.getBlockMetadata(xCoord, yCoord, zCoord)==1)
+        {
+            autoMode=false;
+        }
+    }
+
 
     @Override
     public void updateEntity()
     {
         ticks++;
         ticksSinceLastOperation++;
-        if(ticks==100)
+        if(ticks==100 && autoMode)
         {
             ticks=0;
             this.addRain(worldObj, (IInventory) this);
@@ -86,8 +98,18 @@ public class TileEntityCloudSeeder extends TileEntityInventory
     {
         System.out.println("Toggling auto function");
         int metadata=worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
-        metadata = metadata == 0 ? 1 : 0;
-        worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, metadata, 3);
+        if(metadata==0)
+        {
+            autoMode=true;
+            worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, 1, 3);
+        }
+        else
+        {
+            autoMode=false;
+            worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, 0, 3);
+        }
+
+
     }
 
 
