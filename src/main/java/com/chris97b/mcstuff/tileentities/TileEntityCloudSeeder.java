@@ -20,7 +20,6 @@ public class TileEntityCloudSeeder extends TileEntityInventory
 
 
     int ticks=0;
-    int ticksSinceLastOperation=0;
     boolean autoMode = true;
 
     public TileEntityCloudSeeder()
@@ -36,11 +35,7 @@ public class TileEntityCloudSeeder extends TileEntityInventory
     public void updateEntity()
     {
         ticks++;
-
-        ticksSinceLastOperation++;
-        if(ticks==100 && autoMode)
-
-        if(ticks==100)
+        if(ticks==100 & autoMode == true)
         {
             ticks=0;
             useCartridge();
